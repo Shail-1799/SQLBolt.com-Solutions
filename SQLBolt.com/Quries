@@ -1,0 +1,79 @@
+Exercise 1 — Tasks:
+
+Find the title of each film
+Find the director of each film
+Find the title and director of each film
+Find the title and year of each film
+Find all the information about each film
+
+Answers:
+
+SELECT title FROM movies;
+
+SELECT director FROM movies;
+
+SELECT title, director FROM movies;
+
+SELECT title, year FROM movies;
+
+SELECT * FROM movies;
+
+=========================================================================================================
+
+Exercise 2 — Tasks:
+
+Find the movie with a row id of 6
+Find the movies released in the years between 2000 and 2010
+Find the movies not released in the years between 2000 and 2010
+Find the first 5 Pixar movies and their release year
+
+Answers:
+
+SELECT * FROM movies where id=6;
+
+SELECT * FROM movies where year between 2000 and 2010;
+
+SELECT * FROM movies where year not between 2000 and 2010;
+
+SELECT title, year FROM movies limit 5;
+
+============================================================================================================
+
+Exercise 3 — Tasks:
+
+Find all the Toy Story movies
+Find all the movies directed by John Lasseter
+Find all the movies (and director) not directed by John Lasseter
+Find all the WALL-* movies
+
+Answers:
+
+SELECT * FROM movies where title like 'Toy Story%';
+
+SELECT * FROM movies where director='John Lasseter';
+
+SELECT * FROM movies where director<>'John Lasseter';
+
+SELECT * FROM movies where title like 'WALL_%';
+
+================================================================================================================
+
+Exercise 4 — Tasks:
+
+List all directors of Pixar movies (alphabetically), without duplicates
+List the last four Pixar movies released (ordered from most recent to least)
+List the first five Pixar movies sorted alphabetically
+List the next five Pixar movies sorted alphabetically
+
+Answers:
+
+SELECT distinct(director) FROM movies order by 1 asc;
+
+SELECT title FROM movies order by year desc limit 4;
+
+SELECT title FROM movies order by 1 limit 5;
+
+SELECT title FROM movies order by 1 limit 5,5;
+
+===================================================================================================================
+
