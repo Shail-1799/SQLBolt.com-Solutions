@@ -120,6 +120,127 @@ order by rating desc;
 
 =================================================================================================================================
 
+Exercise 7 — Tasks:
+
+Find the list of all buildings that have employees 
+Find the list of all buildings and their capacity
+List all buildings and the distinct employee roles in each building (including empty buildings)
+
+Answers:
+
+SELECT distinct(building_name)
+FROM buildings b left join employees e on b.building_name = e.building
+Where name is not NULL;
+
+SELECT * FROM buildings;
+
+SELECT distinct(building_name), role
+FROM buildings b left join employees e on bbuilding_name = e.building;
+
+======================================================================================================================================
+
+Exercise 8 — Tasks:
+
+Find the name and role of all employees who have not been assigned to a building
+Find the names of the buildings that hold no employees
+
+
+Answers:
+
+SELECT name, role
+FROM employees 
+Where building is NULL;
+
+SELECT building_name
+FROM buildings b left join employees e on b.building_name = e.building
+Where name is NULL;
+
+=========================================================================================================================================
+
+Exercise 9 — Tasks:
+
+List all movies and their combined sales in millions of dollars
+List all movies and their ratings in percent
+List all movies that were released on even number years
+
+Answers:
+
+SELECT title, 
+(domestic_sales+international_sales)/1000000 as combined_sales 
+FROM movies m inner join boxoffice b on m.id = b.movie_id;
+
+SELECT title, rating*10 as percent_rating 
+FROM movies m inner join boxoffice b on m.id = b.movie_id;
+
+SELECT title, year
+FROM movies
+WHERE year % 2 = 0;
+
+=============================================================================================================================================
+
+Exercise 10 — Tasks:
+
+Find the longest time that an employee has been at the studio
+For each role, find the average number of years employed by employees in that role
+Find the total number of employee years worked in each building
+
+Answers:
+
+SELECT MAX(years_employed) FROM employees;
+
+SELECT role, AVG(years_employed) 
+FROM employees
+Group by role;
+
+SELECT building, SUM(years_employed) 
+FROM employees
+Group by building;
+
+==============================================================================================================================================
+
+Exercise 11 — Tasks:
+
+Find the number of Artists in the studio (without a HAVING clause)
+Find the number of Employees of each role in the studio
+Find the total number of years employed by all Engineers
+
+Answers:
+
+SELECT COUNT(name) 
+FROM employees
+Where role='Artist';
+
+SELECT role, COUNT(name) 
+FROM employees
+Group by role;
+
+SELECT role, SUM(years_employed) 
+FROM employees
+Group by role
+Having role='Engineer';
+
+================================================================================================================================================
+
+Exercise 12 — Tasks:
+
+Find the number of movies each director has directed
+Find the total domestic and international sales that can be attributed to each director
+
+Answers:
+
+SELECT director, COUNT(id) 
+FROM movies
+Group by director;
+
+SELECT director, 
+SUM(domestic_sales + international_sales) as total_sales
+FROM movies m inner join boxoffice b on m.id = b.movie_id
+Group by director;
+
+================================================================================================================================================
+
+
+
 
 
 
