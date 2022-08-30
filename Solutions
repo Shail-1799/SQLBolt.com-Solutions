@@ -240,8 +240,104 @@ Group by director;
 ================================================================================================================================================
 
 
+Exercise 13 — Tasks:
 
+Add the studio's new production, Toy Story 4 to the list of movies (you can use any director) 
+Toy Story 4 has been released to critical acclaim! It had a rating of 8.7, and made 340 million domestically and 270 million internationally. Add the record to the BoxOffice table.
 
+Answers:
+
+INSERT INTO movies
+(title, director, year, length_minutes)
+VALUES ('Toy Story 4', 'John Lasseter', '2000', 91);
+
+INSERT INTO boxoffice
+(movie_id, rating, domestic_sales, international_sales)
+VALUES ('<id from movies table>',8.7, 340000000, 270000000);
+
+================================================================================================================================================
+
+Exercise 14 — Tasks:
+
+The director for A Bug's Life is incorrect, it was actually directed by John Lasseter 
+The year that Toy Story 2 was released is incorrect, it was actually released in 1999
+Both the title and director for Toy Story 8 is incorrect! The title should be "Toy Story 3" and it was directed by Lee Unkrich
+
+Answers:
+
+UPDATE movies
+SET director = 'John Lasseter'
+where title = "A Bug's Life";
+
+UPDATE movies
+SET year = '1999'
+where title = "Toy Story 2";
+
+UPDATE movies
+SET title = 'Toy Story 3',
+    director = 'Lee Unkrich'
+where title = "Toy Story 8";
+
+================================================================================================================================================
+
+Exercise 15 — Tasks:
+
+This database is getting too big, lets remove all movies that were released before 2005. 
+Andrew Stanton has also left the studio, so please remove all movies directed by him.
+
+Answers:
+
+DELETE FROM movies
+WHERE year < 2005;
+
+DELETE FROM movies
+WHERE director = 'Andrew Stanton';
+
+================================================================================================================================================
+
+Exercise 16 — Tasks:
+
+Create a new table named Database with the following columns:
+– Name A string (text) describing the name of the database
+– Version A number (floating point) of the latest version of this database
+– Download_count An integer count of the number of times this database was downloaded
+This table has no constraints. 
+
+Answer:
+
+CREATE TABLE IF NOT EXISTS database(
+    name TEXT,
+    version FLOAT,
+    download_count INTEGER
+);
+
+================================================================================================================================================
+
+Exercise 17 — Tasks:
+
+Add a column named Aspect_ratio with a FLOAT data type to store the aspect-ratio each movie was released in.
+Add another column named Language with a TEXT data type to store the language that the movie was released in. Ensure that the default for this language is English.
+
+Answers:
+
+ALTER TABLE movies
+ADD aspect_ratio FLOAT;
+
+ALTER TABLE movies
+ADD language TEXT DEFAULT 'English';
+
+================================================================================================================================================
+
+Exercise 18 — Tasks:
+
+We've sadly reached the end of our lessons, lets clean up by removing the Movies table
+And drop the BoxOffice table as well
+
+Answers:
+
+DROP TABLE IF EXISTS movies;
+
+DROP TABLE IF EXISTS boxoffice;
 
 
 
